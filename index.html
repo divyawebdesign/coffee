@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-+cWBw57r8Ylc4l7lkVafPZ6iB5wS3EdEp4nwgEQ3Htc0nHk2HU4fKbJQ0b6jzRbTtSK3GIGIqYGqMZdR+r8xxA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        body {
+            background-color: black;
+        }
+        .navbar {
+            float: right;
+            margin-top: 15px;
+            margin-bottom: 70px;
+            background-color: #3b210f;
+            padding: 15px;
+        }
+
+        .navbar a {
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 30px;
+            text-decoration: none;
+            margin-right: 25px;
+            color: whitesmoke;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #edba96;
+            animation: vibrate 0.2s linear;
+        }
+
+        .navbar a:active {
+            animation: pop 0.3s ease;
+        }
+        .main {
+            color: whitesmoke;
+            clear: both; 
+            max-width: 50%;
+            margin-left: 70px;
+            font-size: 60px;
+            font-family:Roboto Monoavenirnextltw-1-regular, Helvetica, Arial, sans-serif;
+            margin-bottom: 180px;
+        }
+
+        .main p {
+            font-size: 30px;
+        }
+
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600");
+        @keyframes show {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pop-word {
+            to {
+                transform: rotateX(0);
+            }
+        }
+
+        @keyframes bar-scale {
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0);
+            }
+
+            60% {
+                transform: scale(1) translate(4px, 1px) rotate(8deg);
+            }
+
+            100% {
+                transform: scale(0) translate(4px, 1px) rotate(8deg);
+            }
+        }
+        @keyframes awaken {
+            0% {
+                transform: rotateX(0);
+            }
+            50% {
+                transform: rotateX(20deg);
+            }
+            100% {
+                transform: rotateX(0);
+            }
+        }
+
+        .awaken-heading {
+            color: white;
+            font-family: "Playfair Display", Vidaloka, serif;
+            font-size: 8rem;
+            line-height: 0.85;
+            perspective: 500px;
+            animation: awaken 1.5s infinite;
+        }
+
+        .word {
+    display: inline-block; /* Change 'block' to 'inline-block' */
+    animation: show 0.01s forwards, pop-word 1.5s forwards;
+    animation-timing-function: cubic-bezier(0.14, 1.23, 0.33, 1.16);
+    opacity: 0;
+    transform: rotateX(120deg);
+    transform-origin: 50% 100%;
+    font-size: 100px;
+}
+
+.word:nth-of-type(2) {
+
+    animation-delay: 1.5s;
+    color:  #a26b43;
+}
+
+
+        .superscript {
+            position: relative;
+            animation-delay: 3.6s;
+            animation-duration: 0.25s;
+            animation-name: shimmer;
+            vertical-align: text-top;
+        }
+
+        .superscript::before {
+            --bar-width: 25%;
+            position: absolute;
+            top: 37%;
+            left: 47%;
+            width: 14%;
+            height: 48%;
+            animation: bar-scale 0.25s linear 3s 1 forwards;
+            background: linear-gradient(
+                to right,
+                white var(--bar-width),
+                transparent var(--bar-width) calc(100% - var(--bar-width)),
+                white calc(100% - var(--bar-width))
+            );
+            content: "";
+            transform: scaleY(var(--bar-scale-y));
+        }
+
+        .superscript::after {
+            --size: 10rem;
+            position: absolute;
+            top: -5%;
+            left: -85%;
+            width: var(--size);
+            height: var(--size);
+            animation: sparkle 0.4s linear 3.5s 1 forwards;
+            background: radial-gradient(
+                circle at center,
+                rgb(252 249 241 / 94%) 0% 7%,
+                transparent 7% 100%
+            ),
+            conic-gradient(
+                transparent 0deg 18deg,
+                var(--sparkle-color) 18deg,
+                transparent 20deg 40deg,
+                var(--sparkle-color) 40deg,
+                transparent 43deg 87deg,
+                var(--sparkle-color) 87deg,
+                transparent 95deg 175deg,
+                var(--sparkle-color) 175deg,
+                transparent 178deg 220deg,
+                var(--sparkle-color) 220deg,
+                transparent 222deg 270deg,
+                var(--sparkle-color) 270deg,
+                transparent 275deg 300deg,
+                var(--sparkle-color) 300deg,
+                transparent 303deg 360deg
+            );
+            border-radius: 50%;
+            clip-path: polygon(
+                50% 0,
+                59.13% 26.64%,
+                85.13% -2.35%,
+                100% 50%,
+                50% 100%,
+                0 50%,
+                31.39% 34.86%
+            );
+            content: "";
+            filter: blur(1px);
+            transform: scale(0);
+        }
+
+        @media screen and (max-width: 600px) {
+            .awaken-heading {
+                font-size: 5rem;
+            }
+
+            .superscript::after {
+                --size: 6rem;
+            }
+        }
+        #container {
+	position: absolute;
+	top: 70%;
+	right: 0;
+    
+	transform: translate(-50%, -50%);
+}
+.steam {
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color:  #a26b43;
+  margin-top: -75px;
+  margin-left: 75px;
+  z-index: 0;
+  opacity: 0;
+}
+
+#steam1 {
+  -webkit-animation: steam1 4s ease-out infinite;
+  animation: steam1 4s ease-out infinite;
+}
+
+#steam3 {
+  -webkit-animation: steam1 4s ease-out 1s infinite;
+  animation: steam1 4s ease-out 1s infinite;
+}
+
+@-webkit-keyframes steam1 {
+  0% {transform: translateY(0) translateX(0) scale(0.25); opacity: 0.2;}
+  100% {transform: translateY(-200px) translateX(-20px) scale(1); opacity: 0;}
+}
+
+@keyframes steam1 {
+  0% {transform: translateY(0) translateX(0) scale(0.25); opacity: 0.2;}
+  100% {transform: translateY(-200px) translateX(-20px) scale(1); opacity: 0;}
+}
+
+#steam2 {
+  -webkit-animation: steam2 4s ease-out 0.5s infinite;
+  animation: steam2 4s ease-out 0.5s infinite;
+}
+
+#steam4 {
+  -webkit-animation: steam2 4s ease-out 1.5s infinite;
+  animation: steam2 4s ease-out 1.5s infinite;
+}
+
+@-webkit-keyframes steam2 {
+  0% {transform: translateY(0) translateX(0) scale(0.25); opacity: 0.2;}
+  100% {transform: translateY(-200px) translateX(20px) scale(1); opacity: 0;}
+}
+
+@keyframes steam2 {
+  0% {transform: translateY(0) translateX(0) scale(0.25); opacity: 0.2;}
+  100% {transform: translateY(-200px) translateX(20px) scale(1); opacity: 0;}
+}
+
+#cup {
+  z-index: 1;
+}
+
+#cup-body {
+  position: absolute;
+  height: 200px;
+  width: 300px;
+  border-radius: 0 0 150px 150px;
+  background-color:  #715b4a;
+  margin: auto;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 1;
+}
+
+#cup-shade {
+  position: relative;
+  height: 300px;
+  width: 200px;
+  background-color:  #724321;
+  display: inline-block;
+  margin-left: 42%;
+  margin-top: -3px;
+  transform: rotate(50deg);
+  z-index: 1;
+}
+
+#cup-handle {
+  position: relative;
+  height: 75px;
+  width: 80px;
+  border-radius: 0 150px 150px 0;
+  border: 15px solid  #724321;
+  margin-bottom: 95px;
+  margin-left: 250px;
+  display: inline-block;
+  z-index: 0;
+}
+
+#saucer {
+  position: absolute;
+  height: 30px;
+  width: 300px;  
+  border-radius: 0 0 100px 100px;
+  background-color:  #231206;
+  margin-top: -32px;
+  margin-left: 5px;
+  z-index: 2;
+}
+
+#shadow {
+  height: 10px;
+  width: 300px;
+  border-radius: 50%;
+  margin-top: -5px;
+  margin-left: 6px;
+  background-color: #3b210f;
+}
+@keyframes neon {
+    0%, 100% {
+        text-shadow: 0 0 5px #a26b43, 0 0 10px #a26b43, 0 0 20px #a26b43, 0 0 40px #ffaf87, 0 0 80px #ffaf87, 0 0 90px #ffaf87, 0 0 100px #ffaf87, 0 0 150px #ffaf87;
+    }
+    50% {
+        text-shadow: 0 0 10px #ffaf87, 0 0 20px #ffaf87, 0 0 30px #ffaf87, 0 0 60px #ffaf87, 0 0 80px #ffaf87, 0 0 100px #ffaf87, 0 0 150px #ffaf87, 0 0 200px #ffaf87;
+    }
+}
+
+
+.about {
+            color: whitesmoke;
+            position: relative;
+            margin: 250px 150px 0px;
+            text-align: center;
+        }
+
+        #big {
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-size: 120px;
+            color: whitesmoke;
+            opacity: 0.2;
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: -60px; /* Adjust margin to reduce the gap */
+        }
+
+        #small {
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-size: 55px;
+            color: whitesmoke;
+            position: relative;
+            top: -21px; /* Adjust this value to fine-tune the gap */
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 0; /* Adjust margin if needed */
+        }
+
+        .about-content {
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-family: Roboto Monoavenirnextltw-1-regular, Helvetica, Arial, sans-serif;
+        }
+
+        .about-content img {
+            width: 30%;
+            height: 400px;
+            animation: zoomInOut 3s infinite;
+            margin-right: 50px;
+            box-shadow: 0 0 20px rgba(131, 50, 50, 0.827);
+            border-radius: 30px;
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1); /* Initial scale */
+            }
+            50% {
+                transform: scale(1.1); /* Zoom in */
+            }
+            100% {
+                transform: scale(1); /* Zoom out */
+            }
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .about-content p {
+            float: right;
+            width: 50%;
+            color: whitesmoke;
+            font-size: 30px;
+            flex: 1;
+            text-align: left; /* Align text to the left for better readability */
+        }
+
+        .about:hover p {
+    animation: giggle 0.5s ease infinite;
+}
+
+@keyframes giggle {
+    0% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    100% { transform: translateX(-3px); }
+}
+.menu {
+    color: whitesmoke;
+    position: relative;
+    margin: 200px 150px 150px;
+    text-align: center;
+}
+
+
+
+.menu-content {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 60px;
+            text-decoration: none;
+        }
+
+        .menu-category {
+    flex: 1;
+    margin: 0 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.menu-category h2 {
+    font-size: 70px;
+    color: #a26b43;
+    margin-bottom: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Add margin to separate the heading from the list */
+}
+
+.menu-column ul {
+    list-style-type: none; /* Remove the bullets */
+    padding: 0; /* Remove default padding */
+}
+
+.menu-column ul li {
+    font-size: 0px;
+    font-family: Roboto Monoavenirnextltw-1-regular, Helvetica, Arial, sans-serif; /* Adjust the font size */
+    margin-bottom: 10px; /* Adjust margin between list items */
+}
+li{
+    font-size: 25px;
+    font-family: Roboto Monoavenirnextltw-1-regular, Helvetica, Arial, sans-serif;
+}
+.feedback {
+    color: whitesmoke;
+    position: relative;
+    margin: 0 150px;
+}
+
+.feedback-box {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 27%;
+    background: linear-gradient(45deg, #5c402d, #9f7a5f,  #a26b43, #593c2e,  #351e13, #1c0c04, #2d1a11, #a77a64);
+    display: inline-block;
+    box-shadow: #a26b43;
+    
+}
+
+.feedback-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 20px;
+    animation: float 2.5s ease infinite alternate;
+}
+
+.feedback-box img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #a26b43;
+    animation: float 2.5s ease infinite alternate; /* Floating effect */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.customer-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
+}
+
+.customer-info h2 {
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.feedback-text {
+    flex: 1;
+    font-family: Roboto Monoavenirnextltw-1-regular, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+#feedback-big {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px;
+    color: whitesmoke;
+    position: relative;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.feedback-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    
+}
+
+.feedback-header h1 {
+    flex: 1;
+    margin: 0;
+    float: left;
+    
+}
+
+
+.navigation-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.navigation-buttons button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #a26b43;
+    color: whitesmoke;
+    border: none;
+    border-radius:10px;
+    cursor: pointer;
+}
+
+.glow-on-hover {
+    
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #a26b43;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #a64f4f, #a26b43, #db9c6f, #602e2e);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+#coffee-line-container {
+    text-align: center;
+    position: relative;
+    display: flex; /* Use flexbox to center vertically */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100px; 
+    width: 500px;/* Set a fixed height to center vertically */
+}
+
+#coffee-line {
+    justify-content: center;
+    font-size: 40px;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px rgba(227, 216, 216, 0.5);
+    margin: 0; /* Remove default margin */
+}
+
+
+#coffee-line-container:before {
+    content: ''; /* Create a pseudo-element */
+    position: absolute; /* Position it absolutely */
+    top: 0;
+    left: 0;
+    width: 100%; /* Take the full width of the container */
+    height: 100%; /* Take the full height of the container */
+    background: linear-gradient(45deg,#5c402d, #9f7a5f,  #a26b43, #593c2e,  #351e13, #1c0c04, #2d1a11, #a77a64); /* Your disco color gradient */
+    background-size: 600% 600%; /* Make the gradient larger for smoother color transitions */
+    border-radius: 10px; /* Rounded corners for the container */
+    z-index: -1; /* Ensure it's behind the text */
+    animation: disco 3s infinite; /* Apply the disco effect animation */
+}
+
+@keyframes disco {
+    0% { background-position: 0 0; } /* Start of the gradient */
+    50% { background-position: 100% 0; } /* Middle of the gradient */
+    100% { background-position: 0 100%; } /* End of the gradient */
+}
+
+
+#contact {
+    color: whitesmoke;
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.contact-content {
+    font-size: 20px;
+}
+
+.contact-content p {
+    margin-bottom: 30px;
+}
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    /* Adjust padding as needed */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="navbar-container">
+        <div class="navbar" id="navbar">
+            <a href="#about">About Us</a>
+            <a href="#menu">Menu</a>
+            <a href="#feedback">Feedback</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+    <div class="main">
+        <h1 class="awaken-heading">
+            <span class="word"><span class="superscript">A</span>waken</span>
+            <span class="word"><span class="superscript">Y</span>our</span>
+            <span class="word"><span class="superscript">S</span>enses</span>
+        </h1>
+        <p>LOrem elit. Maxime soluta nesciunt accusantium adipisci cupiditate dolor deleniti est minima porro, dolores ipsum iure. Ullam repellat suscipit eius, atque labore dolorem nostrum nesciunt in. Earum accusamus iste dignissimos necessitatibus reprehenderit magni officiis, suscipit sed in maiores, quibusdam doloribus ad, harum quaerat fugiat!</p>
+    </div>
+    <div id="container">
+        <div class="steam" id="steam1"> </div>
+        <div class="steam" id="steam2"> </div>
+        <div class="steam" id="steam3"> </div>
+        <div class="steam" id="steam4"> </div>
+        <div id="cup">
+            <div id="cup-body">
+                <div id="cup-shade"></div>
+            </div>
+            <div id="cup-handle"></div>
+        </div>
+        <div id="saucer"></div>
+        <div id="shadow"></div>
+    </div>
+    <center>
+    <div id="coffee-line-container">
+        <h1 id="coffee-line">Life Begins After Coffee</h1>
+    </div>
+</center>
+<br><br>
+<center>
+    <div id="coffee-line-container">
+        <h1 id="coffee-line">Life Begins After Coffee</h1>
+    </div>
+</center>
+<br><br>
+<center>
+    <div id="coffee-line-container">
+        <h1 id="coffee-line">Life Begins After Coffee</h1>
+    </div>
+</center>
+    <div class="about" id="about">
+        <h1 id="big">ABOUT</h1>
+        <h1 id="small">About Us</h1>
+        <div class="about-content">
+            <img src="image2.avif" alt="About Image">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium totam ab eum facilis dolore nemo sapiente praesentium esse alias error distinctio natus, dolores corporis? Mollitia enim saepe iusto reprehenderit, voluptas ad molestiae rerum laudantium autem placeat sequi magnam labore quas? Inventore eveniet iste cumque saepe minus veritatis officia reprehenderit accusamus?</p>
+        </div>
+    </div>
+    <div class="menu" id="menu">
+        <h1 id="big">MENU</h1>
+        <h1 id="small">Our Menu</h1>
+        <div class="menu-content">
+            <div class="menu-category" style="background-image: url('image1.avif');">
+                <h2>Coffee</h2>
+
+                <ul>
+                    <li>Espresso - $2.50</li>
+                    <li>Americano - $3.00</li>
+                    <li>Latte - $3.50</li>
+                    <li>Cappuccino - $3.50</li>
+                    <li>Mocha - $4.00</li>
+                </ul>
+            </div>
+            <div class="menu-category" style="background-image: url('img2.jpg');">
+                <h2>Tea</h2>
+                <ul>
+                    <li>Green Tea - $2.00</li>
+                    <li>Black Tea - $2.00</li>
+                    <li>Herbal Tea - $2.50</li>
+                    <li>Chai Latte - $3.00</li>
+                </ul>
+            </div>
+            <div class="menu-category" style="background-image: url('snacks.jpg');">
+                <h2>Snacks</h2>
+                <ul>
+                    <li>Bagel - $2.50</li>
+                    <li>Croissant - $2.50</li>
+                    <li>Muffin - $3.00</li>
+                    <li>Cookie - $1.50</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="feedback" id="feedback">
+        <div class="feedback-header">
+            <h1 id="feedback-big">What Client Said About Us?</h1>
+            <div class="navigation-buttons">
+                <button onclick="prevFeedback()" class="glow-on-hover"><</button>
+                <button onclick="nextFeedback()" class="glow-on-hover">></button>
+            </div>
+        </div>
+    <div class="feedback-content">
+        <div class="feedback-box">
+            <div class="customer-info">
+                <img src="1.jpg" alt="Customer Image">
+                <h2>John Doe</h2>
+            </div>
+            <div class="feedback-text">
+                <p>The staff was friendly and the coffee was excellent. Will definitely come back again!</p>
+            </div>
+        </div>
+        <div class="feedback-box">
+            <div class="customer-info">
+                <img src="2.jpg" alt="Customer Image">
+                <h2>Jane Smith</h2>
+            </div>
+            <div class="feedback-text">
+                <p>Tried their croissants and muffins, they were fresh and tasty. Highly recommend!</p>
+            </div>
+        </div>
+        <div class="feedback-box">
+            <div class="customer-info">
+                <img src="3.jpg" alt="Customer Image">
+                <h2>Michael Johnson</h2>
+            </div>
+            <div class="feedback-text">
+                <p>Loved the cozy atmosphere and relaxing music. Perfect place to unwind after a busy day.</p>
+            </div>
+        </div>
+        <div class="feedback-box">
+            <div class="customer-info">
+                <img src="2.jpg" alt="Customer Image">
+                <h2>Sarah Brown</h2>
+            </div>
+            <div class="feedback-text">
+                <p>Great selection of teas and friendly staff. The ambiance is fantastic!</p>
+            </div>
+        </div>
+        <div class="feedback-box">
+            <div class="customer-info">
+                <img src="3.jpg" alt="Customer Image">
+                <h2>David Wilson</h2>
+            </div>
+            <div class="feedback-text">
+                <p>Amazing coffee and a wide variety of snacks. Will surely recommend to friends!</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+    <div class="contact-content" id="contact">
+        <p>
+        Email: coffeeshop@gmail.com&nbsp;&nbsp;&nbsp;&nbsp;Phone:9898989898</p>
+    </div>
+    
+</footer>
+    <script>
+        // Hide all feedback boxes initially
+        const feedbackContent = document.querySelector('.feedback-content');
+const feedbackBoxes = document.querySelectorAll('.feedback-box');
+const prevButton = document.querySelector('.navigation-buttons button:first-child');
+const nextButton = document.querySelector('.navigation-buttons button:last-child');
+let currentIndex = 0;
+
+function showFeedbackBoxes() {
+    feedbackBoxes.forEach((box, index) => {
+        if (index >= currentIndex && index < currentIndex + 3) {
+            box.style.display = 'flex'; /* Changed from 'block' to 'flex' */
+        } else {
+            box.style.display = 'none';
+        }
+    });
+}
+
+function nextFeedback() {
+    if (currentIndex < feedbackBoxes.length - 3) {
+        currentIndex++;
+        showFeedbackBoxes();
+    }
+}
+
+function prevFeedback() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        showFeedbackBoxes();
+    }
+}
+
+showFeedbackBoxes();
+nextButton.addEventListener('click', nextFeedback);
+prevButton.addEventListener('click', prevFeedback);
+    </script>
+</body>
+</html>
