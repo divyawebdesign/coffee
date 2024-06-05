@@ -35,22 +35,33 @@
             animation: pop 0.3s ease;
         }
 
-	 @media (max-width: 768px) {
-    .navbar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        background: #333;
-    }
+	@media (max-width: 768px) {
+            .navbar {
+            float: right;
+            margin-top: 15px;
+            margin-bottom: 70px;
+            background-color: #3b210f;
+            padding: 15px;
+        }
 
-    .navbar a {
-        padding: 10px;
-        width: 100%;
-        text-align: center;
-        border-top: 1px solid #444;
+        .navbar a {
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 20px;
+            text-decoration: none;
+            margin-right: 25px;
+            color: whitesmoke;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #edba96;
+            animation: vibrate 0.2s linear;
+        }
+
+        .navbar a:active {
+            animation: pop 0.3s ease;
+        }
     }
-}
         .main {
             color: whitesmoke;
             clear: both; 
