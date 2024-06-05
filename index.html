@@ -35,7 +35,7 @@
             animation: pop 0.3s ease;
         }
 
-	@media (max-width: 768px) {
+        @media (max-width: 768px) {
             .navbar {
             float: right;
             margin-top: 15px;
@@ -46,7 +46,7 @@
 
         .navbar a {
             font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 15px;
+            font-size: 20px;
             text-decoration: none;
             margin-right: 25px;
             color: whitesmoke;
@@ -350,6 +350,56 @@
     }
     50% {
         text-shadow: 0 0 10px #ffaf87, 0 0 20px #ffaf87, 0 0 30px #ffaf87, 0 0 60px #ffaf87, 0 0 80px #ffaf87, 0 0 100px #ffaf87, 0 0 150px #ffaf87, 0 0 200px #ffaf87;
+    }
+}
+/* Default styles for desktop view */
+
+
+
+/* Styles for mobile view */
+@media (max-width: 600px) {
+    #container {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .steam {
+        height: 75px;
+        width: 75px;
+        margin-left: -37.5px;
+    }
+
+    #cup-body {
+        height: 100px;
+        width: 150px;
+    }
+
+    #cup-shade {
+        height: 150px;
+        width: 100px;
+        margin-left: 25px;
+        transform: rotate(50deg);
+    }
+
+    #cup-handle {
+        height: 37.5px;
+        width: 40px;
+        border: 7.5px solid #724321;
+        margin-top: 25px;
+        margin-left: 150px;
+    }
+
+    #saucer {
+        height: 15px;
+        width: 150px;  
+        margin-top: 100px;
+    }
+
+    #shadow {
+        height: 5px;
+        width: 150px;
+        margin-top: 115px;
     }
 }
 
